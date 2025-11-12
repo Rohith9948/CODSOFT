@@ -1,0 +1,218 @@
+<!--
+  Landing Page - single-file HTML + CSS + minimal JS
+  Open this file in your browser to preview. Edit content, images, and colors as needed.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product — Simple Landing Page</title>
+  <meta name="description" content="Clean, responsive landing page template built with plain HTML & CSS." />
+
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7; /* mint */
+      --accent-2:#60a5fa; /* blue */
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --fw-semibold:600;
+      --container:1100px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.06), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(110,231,183,0.04), transparent),
+                  var(--bg);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px 20px;
+    }
+
+    .wrap{max-width:var(--container);margin:0 auto}
+
+    /* NAV */
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#04263b}
+    .brand h1{font-size:18px;margin:0}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-weight:500}
+    .cta{padding:8px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#04263b;font-weight:700;text-decoration:none}
+
+    /* Mobile menu */
+    .menu-toggle{display:none;background:transparent;border:0;color:var(--muted)}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center;padding:56px 0}
+    .eyebrow{display:inline-block;padding:6px 10px;background:var(--glass);border-radius:999px;color:var(--accent);font-weight:700;font-size:13px}
+    h2{font-size:40px;margin:16px 0 12px;line-height:1.03}
+    p.lead{color:var(--muted);max-width:64ch}
+    .hero-ctas{margin-top:20px;display:flex;gap:12px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;padding:12px 18px;border-radius:12px;font-weight:700;color:#04263b;text-decoration:none}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px 18px;border-radius:12px;color:var(--muted);text-decoration:none}
+
+    /* mock phone / card */
+    .mock{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:22px;padding:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .mock .preview{height:420px;border-radius:12px;background:linear-gradient(180deg,#061226 0%, rgba(6,18,38,0.6) 100%);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600}
+
+    /* FEATURES */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px}
+    .muted{color:var(--muted)}
+
+    /* TESTIMONIALS & FOOTER */
+    .testimonials{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+    .testimonial{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    footer{margin-top:48px;border-top:1px solid rgba(255,255,255,0.03);padding-top:22px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .mock{order:-1}
+    }
+    @media (max-width:640px){
+      .wrap{padding:0 10px}
+      .nav-links{display:none}
+      .menu-toggle{display:block}
+      .features{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:1fr}
+      h2{font-size:28px}
+    }
+
+    /* small utility */
+    .small{font-size:13px}
+    .center{display:flex;align-items:center;gap:10px}
+
+    /* simple micro-animations */
+    .logo{transition:transform .25s ease}
+    .logo:hover{transform:rotate(-6deg) scale(1.02)}
+    .card, .mock{transition:transform .22s ease, box-shadow .22s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo">P</div>
+        <div>
+          <h1>Product</h1>
+          <div class="small muted">Simple landing template</div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a class="cta" href="#">Get Started</a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Open menu" id="menuBtn">
+        ☰
+      </button>
+    </nav>
+
+    <main class="hero">
+      <section>
+        <div class="eyebrow">New • Starter-friendly</div>
+        <h2>Build fast. Launch faster. Delight customers.</h2>
+        <p class="lead">A minimalist landing page to showcase your product, collect signups, and explain value — handcrafted with modern CSS and accessibility in mind.</p>
+
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#">Start Free Trial</a>
+          <a class="btn-ghost" href="#">Explore Docs</a>
+        </div>
+
+        <div style="margin-top:22px; display:flex; gap:14px; align-items:center;">
+          <div class="center">
+            <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#04263b">★</div>
+            <div>
+              <div style="font-weight:700">Rated 4.8/5</div>
+              <div class="muted small">by 2,394 users</div>
+            </div>
+          </div>
+
+          <div class="muted small">No credit card required • Cancel anytime</div>
+        </div>
+
+        <div id="features" class="features">
+          <div class="card">
+            <h3>Fast setup</h3>
+            <p class="muted">Get up and running with templates and starter sections that ship with the page.</p>
+          </div>
+          <div class="card">
+            <h3>Responsive</h3>
+            <p class="muted">Looks great on phones, tablets, and desktop without any extra work.</p>
+          </div>
+          <div class="card">
+            <h3>Accessible</h3>
+            <p class="muted">Semantic markup and readable contrast make this friendly to more users.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="mock">
+        <div class="preview">
+          <div class="small muted">Your product preview goes here — replace with image or iframe.</div>
+        </div>
+      </aside>
+    </main>
+
+    <section class="testimonials" id="testimonials">
+      <div class="testimonial">
+        <strong>“Saved us weeks of design work.”</strong>
+        <p class="muted">This template helped our team quickly create a landing page and start collecting signups the same day.</p>
+        <div class="small muted">— Priya, Founder</div>
+      </div>
+
+      <div class="testimonial">
+        <strong>“Beautiful, simple, and customizable.”</strong>
+        <p class="muted">We tailored the colors and copy to fit our brand — no framework required.</p>
+        <div class="small muted">— Amir, Product Designer</div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="small muted">© 2025 Product. All rights reserved.</div>
+      <div class="small">
+        <a href="#" class="muted">Privacy</a> · <a href="#" class="muted">Terms</a> · <a href="#" class="muted">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile menu toggle (very small, unobtrusive)
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn.addEventListener('click', ()=>{
+      const navLinks = document.querySelector('.nav-links');
+      if(navLinks.style.display === 'flex'){
+        navLinks.style.display = '';
+      } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.right = '20px';
+        navLinks.style.top = '72px';
+        navLinks.style.background = 'rgba(2,6,23,0.72)';
+        navLinks.style.padding = '12px';
+        navLinks.style.borderRadius = '10px';
+      }
+    });
+  </script>
+</body>
+</html>
